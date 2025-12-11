@@ -1,6 +1,6 @@
-# Angular SQL Table Application
+# Angular + NestJS + PostgreSQL Application
 
-An attractive Angular frontend application that displays data from Microsoft SQL Server in a beautiful, responsive table.
+An attractive Angular frontend application with NestJS backend that displays data from PostgreSQL in a beautiful, responsive table.
 
 ## Features
 
@@ -15,7 +15,7 @@ An attractive Angular frontend application that displays data from Microsoft SQL
 
 - Node.js (v18 or higher)
 - npm (v9 or higher)
-- Microsoft SQL Server
+- PostgreSQL (v12 or higher)
 - Angular CLI (will be installed with dependencies)
 
 ## Setup Instructions
@@ -26,39 +26,29 @@ An attractive Angular frontend application that displays data from Microsoft SQL
 npm install
 ```
 
-### 2. Configure SQL Server Connection
+### 2. Configure PostgreSQL Connection
 
-Create a `.env` file in the root directory (copy from `.env.example`):
-
-```powershell
-copy .env.example .env
-```
-
-Then edit `.env` with your actual SQL Server credentials:
+Edit `.env` file with your PostgreSQL details:
 
 ```env
-SQL_USER=your_username
-SQL_PASSWORD=your_password
-SQL_SERVER=localhost
-SQL_DATABASE=your_database
-SQL_ENCRYPT=true
-SQL_TRUST_CERTIFICATE=true
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_password
+POSTGRES_DATABASE=TestStandDB
 API_PORT=3000
 ```
 
-Also update the SQL query in `server/server.js` to match your table:
-
-```javascript
-const result = await sql.query`SELECT TOP 100 * FROM YourTableName`;
+**Note:** Make sure PostgreSQL is running and the database exists. You can create it with:
+```sql
+CREATE DATABASE "TestStandDB";
 ```
-
-**Important:** Never commit the `.env` file to version control! It's already in `.gitignore`.
 
 ### 3. Run the Application
 
 You'll need two terminals:
 
-**Terminal 1 - Start the Backend Server:**
+**Terminal 1 - Start the NestJS Backend:**
 ```powershell
 npm run server
 ```
@@ -81,15 +71,23 @@ Angular_VSC/
 │   │   ├── app.component.ts          # Main component logic
 │   │   ├── app.component.html        # Main component template
 │   │   └── app.component.css         # Component styles
+│   ├── backend/                      # NestJS Backend
+│   │   ├── data/
+│   │   │   ├── data.controller.ts    # REST API controller
+│   │   │   ├── data.service.ts       # Business logic
+│   │   │   ├── database.service.ts   # SQL Server connection
+│   │   │   └── data.module.ts        # Data module
+│   │   ├── app.module.ts             # Root module
+│   │   └── main.ts                   # NestJS entry point
 │   ├── index.html                    # Main HTML file
-│   ├── main.ts                       # Application entry point
+│   ├── main.ts                       # Angular entry point
 │   └── styles.css                    # Global styles
-├── server/
-│   └── server.js                     # Express API server
 ├── .env                              # Environment variables (DO NOT COMMIT)
 ├── .env.example                      # Example environment file
 ├── .gitignore                        # Git ignore rules
+├── nest-cli.json                     # NestJS configuration
 ├── package.json                      # Dependencies and scripts
+├── tsconfig.server.json              # TypeScript config for backend
 └── angular.json                      # Angular configuration
 ```
 
@@ -132,9 +130,22 @@ The application is built with Angular standalone components, making it easy to e
 ## Technologies Used
 
 - **Frontend:** Angular 17, Angular Material, RxJS
-- **Backend:** Node.js, Express
-- **Database:** Microsoft SQL Server (mssql package)
+- **Backend:** NestJS 10, TypeScript
+- **Database:** PostgreSQL (pg package, TypeORM)
 - **Styling:** CSS3, Material Design
+
+## Architecture
+
+This application follows a modern three-tier architecture:
+
+1. **Presentation Layer (Angular)**: Material Design UI with real-time search
+2. **Application Layer (NestJS)**: RESTful API with dependency injection
+3. **Data Layer (MS SQL Server)**: Relational database with Windows Authentication
+
+**Flow:**
+```
+Angular Component → HTTP Service → NestJS Controller → Service → Database Service → PostgreSQL
+```
 
 ## License
 

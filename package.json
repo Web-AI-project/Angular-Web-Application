@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "server": "node server/server.js"
+    "server": "node server/server.js",
+    "server:nest": "nest start",
+    "server:nest:dev": "nest start --watch"
   },
   "private": true,
   "dependencies": {
@@ -20,19 +22,24 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.6.1",
-    "express": "^4.18.2",
-    "msnodesqlv8": "^5.1.1",
-    "mssql": "^12.2.0",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typeorm": "^0.3.28",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.0",
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
     "@types/node": "^20.0.0",
     "typescript": "~5.2.2"
   }
