@@ -1,4 +1,4 @@
-# Angular + NestJS + PostgreSQL Application
+# Angular(TypeScript) + NestJS + PostgreSQL Application
 
 An attractive Angular frontend application with NestJS backend that displays data from PostgreSQL in a beautiful, responsive table.
 
