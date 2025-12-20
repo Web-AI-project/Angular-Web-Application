@@ -7,7 +7,7 @@ export class DataService {
 
   async getTableData(): Promise<any[]> {
     const pool = this.databaseService.getPool();
-    const result = await pool.query('SELECT * FROM "Test_Station_1" LIMIT 100');
+    const result = await pool.query('SELECT * FROM public.test_station_1 LIMIT 100');
     return result.rows;
   }
 }

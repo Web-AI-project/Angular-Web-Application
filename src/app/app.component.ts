@@ -28,7 +28,7 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'SQL Data Dashboard';
+  title = 'MES Data Dashboard';
   displayedColumns: string[] = [];
   dataSource: any[] = [];
   loading = false;

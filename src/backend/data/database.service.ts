@@ -24,7 +24,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         port: this.configService.get<number>('POSTGRES_PORT') || 5432,
         user: this.configService.get<string>('POSTGRES_USER') || 'postgres',
         password: this.configService.get<string>('POSTGRES_PASSWORD'),
-        database: this.configService.get<string>('POSTGRES_DATABASE') || 'TestStandDB',
+        database: this.configService.get<string>('POSTGRES_DATABASE') || 'TestDB',
         max: 10,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 30000,
